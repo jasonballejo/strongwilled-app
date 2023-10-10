@@ -12,17 +12,21 @@ export async function GET(request: NextRequest, { params } : { params: { id: str
     return NextResponse.json(user);
 }
 
-// Create a PUT and DELETE request
+interface UpdateClientPayload {
+    name: string
+    phone_number: string;
+    email: string;
+}
 
 export async function PUT(request: NextRequest, { params } : { params: { id: string, email: string }}) {
     const userId = params.id;
-    const userEmail = params.email;
-    const user = await prisma.client.update({
+    const payload: UpdateClientPayload = await request.json();
+    const updateClient = await prisma.client.update({ 
         where: { id: userId },
-        data: { name: userEmail }
+        data: payload
     })
 
-    return NextResponse.json(user);
+    return NextResponse.json(updateClient);
 }
 
 export async function DELETE(request: NextRequest, { params } : { params: { id: string }}) {
