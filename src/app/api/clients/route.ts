@@ -18,3 +18,11 @@ export async function POST(
     
     return NextResponse.json(newClient);
 }
+
+
+export async function GET(
+    request: NextRequest
+) {
+    const clients = await prisma.client.findMany()
+    return NextResponse.json(clients);
+}
