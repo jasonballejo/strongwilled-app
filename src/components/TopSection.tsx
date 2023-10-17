@@ -1,12 +1,21 @@
 import react, { useState } from "react";
 import ButtonModal from "./Button/ButtonModal";
+import useClients from "@/hooks/useClients";
+import { useMutation } from "@tanstack/react-query";
 
 export default function TopSection() {
+  const { data: clients = [], isLoading, isError } = useClients();
+
   const [modal, setModal] = useState(false);
 
   const toggleModal = () => {
     setModal(!modal);
   };
+
+  // Confused on the Mutation 
+  // const { mutate } = useMutation({
+  //   mutationFn: clients,
+  // })
 
   return (
     <div className="flex justify-between items-center px-5 py-5">
@@ -78,12 +87,16 @@ export default function TopSection() {
                   >
                     Close
                   </button>
-                  <a
+                  <button className="py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-blue-500 text-white hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all text-sm dark:focus:ring-offset-gray-800"
+                    >
+                    Submit
+                  </button>
+                  {/* <a
                     className="py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-blue-500 text-white hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all text-sm dark:focus:ring-offset-gray-800"
                     href="#"
                   >
                     Save changes
-                  </a>
+                  </a> */}
                 </div>
               </div>
             </div>
