@@ -1,21 +1,13 @@
 import react, { useState } from "react";
 import ButtonModal from "./Button/ButtonModal";
-import useClients from "@/hooks/useClients";
 import { useMutation } from "@tanstack/react-query";
 
 export default function TopSection() {
-  const { data: clients = [], isLoading, isError } = useClients();
-
   const [modal, setModal] = useState(false);
 
   const toggleModal = () => {
     setModal(!modal);
   };
-
-  // Confused on the Mutation 
-  // const { mutate } = useMutation({
-  //   mutationFn: clients,
-  // })
 
   return (
     <div className="flex justify-between items-center px-5 py-5">
