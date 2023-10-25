@@ -6,7 +6,7 @@ export default function ClientsTable() {
   const { data: clients = [], isLoading, isError } = useClients();
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <div>Loading....</div>;
   }
 
   return (
